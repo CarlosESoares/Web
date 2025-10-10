@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu primeiro HTML</title>
+    <style>
+        img{
+            width: 300px;
+            border-radius: 50%;
+        }
+        p{color: rgb(145, 104, 51);}
+        h1{color: rgb(216, 115, 0);}
+        ul{background-color: rgb(250, 241, 215); padding: 26px}
+        table, td, th{border:1px solid #000;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <!-- Isso é um comentário -->
+     <hr>
+    <h1> Título de nível 1</h1>
+    <h2> Título de nível 2</h2>
+    <h3> Título de nível 3</h3>
+    <h4> Título de nível 4</h4>
+    <h5> Título de nível 5</h5>
+    <h6> Título de nível 6</h6>
+    <p>Isto é um paragrafo</p>
+    <span>Isto é somente um texto</span><span> outro</span>
+    <hr>
+    <p>Lorem <em>ipsum</em> dolor <strong>sit amet</strong> consectetur adipisicing elit. Voluptatibus, suscipit, fugiat voluptatum a porro aspernatur veritatis eveniet nobis fuga voluptate doloribus nihil quas, odit nam deserunt ullam quis? Laborum, sequi?</p>
+    <ul type="circle">
+        <li>git init - cria um repositório em um diretório</li>
+        <li>git add - adiciona modificações d workcopy/worktree ai stage</li>
+        <li>git commit -m "asd" - cria um commit apartir do stage</li>
+        <li>git log - exibe os commits do nosso repositório local</li>
+        <li>git log --oneline --all --graph</li>
+        <li>git status - exibe o estado do <strong> WK</strong></li>
+        <li>git checkout -b nova-branch - cria uma nova branch  apontando para a branch</li>
+        <li>git reset --hard - restaura os arquivos trakeados ao estado no HEAD</li>
+        <li>git push remote branch</li>
+        <li>git config user.name <em>"Nome"</em></li>
+        <li>git config user.email <em>"Email"</em></li>
+        <li>git clone <em>url</em> - faz o clone de um repositório</li>
+    </ul>
+    <hr>
+    <h1>Listas</h1>
+    <hr>
+    <h2>Lista não ordenada</h2>
+    <ul>
+        <li>Panquecas</li>
+        <li>uvas</li>
+        <li>maça</li>
+    </ul>
+    <h2>Lista ordenada</h2>
+    <ol start="5" type="a">
+        <li>Panquecas</li>
+        <li>uvas</li>
+        <li>maça</li>
+    </ol>
+    
+    <dl>
+        <dt>Bacon</dt>
+        <dd>fundamental</dd>
+        <dt>Porco</dt>
+        <dd>Bacon</dd>
+        <dt>Café</dt>
+        <dd>Bebidas fundamentais para vida</dd>
+        <dt>Água</dt>
+        <dd>Segunda bebida fundamental para a vida</dd>
+    </dl>
+    <hr>
+    <h1>Tags de formatação</h1>
+    <p>Lorem ipsum <strong>Negrito = strong</strong> dolor, <sub>Subescrito = sub</sub>sit <sup>Sobreescrito = sup</sup>amet <br> <strong>Tag para quebrar a linha = br</strong> <br> consectetur <mark>Marca o texto: mark </mark>adipisicing elit. Odio obcaecati quas omnis, expedita ducimus modi atque reprehenderit, dolor tenetur praesentium sunt! Magnam, labore earum! Eligendi et veniam numquam eius.</p>
+    <hr>
+    <h1>Criar links e imagem</h1>
+
+    <a href="https:/www.google.com"target="_blank">Google</a>
+    <p>tag para link = a <br> tag para o link é href<br> tag para abrir uma nova aba igual "target= blank"</p>
+    <hr>
+    <h2>Imagens</h2>
+    <span>Imagem por link</span><br>
+    <img src="https://www.petz.com.br/blog/wp-content/uploads/2023/08/Interna-1-dragao-barbudo-ok.jpg">
+    <br>
+    <span>Salva no código interno</span>
+    <br>
+    <img src="imagens/pogona.webp">
+
+    <hr>
+    <h1>Tabelas em HTML</h1>
+    <table>
+        <tr>Linhas
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Profissão</th>
+        </tr>
+        <tr>
+            <td>Maria</td>
+            <td>30</td>
+            <td>Desenvolvimento</td>
+        </tr>
+        <tr>
+            <td>Joao</td>
+            <td>20</td>
+            <td>Estudante</td>
+        </tr>
+    </table>
+    <hr>
+    <h1>Formularios</h1>
+    <form action="https://google.com/search">
+        <label for="q">Query de Busca</label><br> <!-- Não é obrigatório -->
+        <input id="q" name="q" type="text">
+        <input type="submit" value="Buscas">
+    </form>
+    <h3>Tags:</h3>
+    <ul type="circle">
+        <li>Label - Texto unificado com o input</li>
+        <li>Input - Tipo de entrada de dado</li>
+        <li>Type - Alterar entrada de dados [text - checkout - date - etc] <i>Somente no input</i></li>
+    </ul>
+</body>
+</html>

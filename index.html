@@ -3,122 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu primeiro HTML</title>
+    <title>Programação para Internet 1</title>
 </head>
+<body>
+    <h1>Aulas de Programação Para Internet</h1>
 
-<style>
-    img{ width: 500px; height: 500px; 
-    border-radius:50% ;}
-    h1{ color: black;}
-    h2{color:red;}
-    ul{background-color: gray; padding: 20px;}    
-    table,th,td{border:1px solid black;border-collapse: collapse;}
-     
+    <dl>
+        <dt> <a href="./1.html">Aula 01</a></dt>
+        <dd> História da Web ....</dd>
+
+        <dt><a href="./2.htmjl">Aula 02</a></dt>
+        <dd>Git...</dd>
+
+        <dt><a href="./3.html">Aula 03</a></dt>
+        <dd>HTML básico. Listas e tabelas.</dd>
+
+        <dt><a href="./4.html">Aula 04</a></dt>
+        <dd>Formularios e Tabelas + introdução CSS</dd>
+    </dl>
     
-    
-</style>
-<body style="background-color: beigegit ;">
-    <!-- Isso é um comentário -->
-     <hr>
-    <h1> Título de nível 1</h1>
-    <h2> Título de nível 2</h2>
-    <h3> Título de nível 3</h3>
-    <h4> Título de nível 4</h4>
-    <h5> Título de nível 5</h5>
-    <h6> Título de nível 6</h6>
-    <p>Isto é um paragrafo</p>
-    <span>Isto é somente um texto</span><span> outro</span>
-    <hr>
-    <p>Lorem <em>ipsum</em> dolor <strong>sit amet</strong> consectetur adipisicing elit. Voluptatibus, suscipit, fugiat voluptatum a porro aspernatur veritatis eveniet nobis fuga voluptate doloribus nihil quas, odit nam deserunt ullam quis? Laborum, sequi?</p>
-  <ul>
-            <li>git init - cria um repositório em um diretório</li>
-            <li>git add - adiciona modificações d workcopy/ worktree ai stage</li>
-            <li>git commit -m "asd" - cria um commit apartir do stage</li>
-            <li>git log - exibe os commits do nosso repositório local</li>
-            <li>git log --oneline --all --graph</li>
-            <li>git status - exibe o estado do <strong>WK</strong></li>
-            <li>git checkout -b nova-branch - cria uma nova branch apontando para a branch ou hash informado</li>
-            <li>git reset --hard - restaura os arquivos trakeados ao estado no HEAD </li>
-            <li> git push  remote  branch</li>
-            <li> git config user.name="Nome"</li>
-            <li> git config user.email="Email"</li>
-        </ul>
-        <hr>
-        <h2>lista não ordenada</h2>
-        <ul>
-            <li>Panquecas</li>
-            <li>uvas</li>
-            <li>maça</li>
-        </ul>
-        <hr>
-        <h2>lista ordenada</h2>
-        <ol>
-            <li>Panquecas</li>
-            <li>uvas</li>
-            <li>maça</li>
-        </ol>
-        
-        <dl>
-            <dt>Bacon</dt>
-            <dd>Comida fundamental da vida</dd>
-            <dt>Porco</dt>
-            <dd>É a incrivel maquina que transforma lavagem em bacon</dd>
-            <dt>café</dt>
-            <dd>Bebidas fundamentais para a vida</dd>
-            <dt>Agua</dt>
-            <dd>Segunda bebida fundamenta para a vida</dd>
-        </dl>
-        <hr>
-        <h1>Tags de formatação</h1>
-        <p>Lorem ipsum <strong> Negrito = strong </strong>dolor <sub>subescrito = sub</sub>sit <sup>Sobreescrito = sup </sup> amet, <br> <Strong> tag para quebrar linha = br </Strong> <Br>
-        </Br>consectetur <mark>marca o texto com canetão = mark </mark>adipisicing elit. Beatae aut eum doloribus, fugiat sed tenetur vel explicabo sit perferendis laboriosam odio fuga nihil dicta corrupti illum dignissimos illo repellat. Quidem.</p>
-        <hr>
-        <h1>Criar links e imagem</h1>
-        <hr>
-        <h2>Links</h2>
-        <a href="https:/www.google.com" target="_blank">google</a>
-        <p>tag para link = a <br> tag para o link é href <br> tag para abrir uma nova aba igual target = blank</p>
-        <hr>
-        <h2>imagens</h2>
-        <p>tag de imaginas = img </p>
-        <br>
-        <img src="./img/axolote.jfif" >
-
-        <hr>
-        <h1>tabelas em html</h1>
-        <table>
-            <tr>
-                <th>nomes</th>
-                <th>Idade</th>
-                <th>Profissão</th>
-            </tr>
-            <tr>
-                <td>maria</td>
-                <td>30</td>
-                <td>desenvolvimento</td>
-            </tr>
-            <tr>
-                <td>Joao</td>
-                <td>30</td>
-                <td>estudante</td>
-            </tr>
-            
-        </table>
-        <hr>
-        <h1>Formularios</h1>
-        <p>Formulurio para pesquisa no google</p>
-        <form action="https://google.com/search">
-              <label for="q">pesquisa algo</label><br>
-              <input type="text" name="nome" id="nome" placeholder="Insira o seu nome ">
-              <input type="submit" value="Buscas">
-            </form>
-            <hr>
-            <p>Formulario para pesquisa de datas</p>
-            <form action="https://google.com/search">
-                <label for="a">Insira uma' data</label>
-                <input type="date" name="data" id="data">
-                <button type="submit" value="Busca">Pesquisar</button>
-
-            </form>
-    </body>
+</body>
 </html>
