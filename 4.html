@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios e tabelas + introdução CAA</title>
 </head>
+<style>
+    table,th,td {
+        border:1px solid black; border-collapse: collapse;
+    }
+
+</style>
 <body>
     <h1>Formularios</h1>
     <p>O HTML possui a tag form que possibilita definir formulários para submissão de dados informados pelo usuário por meio de campos de input, dentro do formulário.
@@ -47,7 +53,33 @@
             <td>Celula 2x1</td>
             <td>Celula 2x2</td>
         </tr>
-    </table>       
+    </table>
+
+    <table>
+        <tr>
+            <td rowspan="3">Carnes</td>
+            <td>item</td>
+            <td>quantidade</td>
+            <td>valor</td>
+        </tr>
+        <tr>
+            <td>Carne</td>
+            <td>3kg</td>
+            <td>R$30</td>
+        </tr>
+        <tr>
+            <td>frango</td>
+            <td>2kg</td>
+            <td>R$:30</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Bebidas</td>
+            <td>Cachaça</td>
+            <td>O maximo que der</td>
+            <td> não importa</td>
+        </tr>
+
+    </table>
     
 </body>
 </html>
