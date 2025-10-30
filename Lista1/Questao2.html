@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2 – Protocolo HTTP</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; color: #333; }
+        h1, h2, h3 { color: #2c3e50; }
+        p { line-height: 1.6; }
+        pre { background: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        img { max-width: 100%; margin: 20px 0; display: block; border: 1px solid #ddd; border-radius: 8px; }
+        .caption { text-align: center; font-style: italic; color: #666; margin-top: -15px; }
+        ul { margin: 10px 0; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Atividade 2 – Protocolo HTTP</h1>
+
+<h2>1. O que é o Protocolo HTTP e como é usado na Web</h2>
+
+<p>O <strong>HTTP</strong> (HyperText Transfer Protocol) é o protocolo usado na World Wide Web para transferir dados entre um cliente (como um navegador) e um servidor. Ele funciona no modelo cliente-servidor: o cliente envia uma <strong>requisição</strong> e o servidor responde com uma <strong>resposta</strong>.</p>
+
+<p>O HTTP é <em>stateless</em>, ou seja, cada requisição é independente. Ele foi criado por Tim Berners-Lee em 1991 e evoluiu para versões como HTTP/1.1, HTTP/2 e HTTP/3. O <strong>HTTPS</strong> é a versão segura com criptografia.</p>
+
+<img src="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview/http_request_response.png" alt="Ciclo HTTP">
+<p class="caption">Diagrama do ciclo de requisição e resposta HTTP</p>
+
+<h3>Exemplos de Requisições</h3>
+
+<h4>GET – Solicitar uma página</h4>
+<pre>
+GET /index.html HTTP/1.1
+Host: www.exemplo.com
+User-Agent: Mozilla/5.0...
+Accept: text/html
+</pre>
+
+<img src="https://httpstatuses.com/img/http-request-structure.png" alt="Requisição HTTP">
+<p class="caption">Estrutura de uma requisição HTTP</p>
+
+<h4>POST – Enviar dados (ex: login)</h4>
+<pre>
+POST /login HTTP/1.1
+Host: www.exemplo.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+
+username=joao&password=123
+</pre>
+
+<h2>2. Detalhes de um Request e Response Capturado</h2>
+
+<p>Captura real ao acessar <code>http://example.com</code>:</p>
+
+<h3>Request (Requisição)</h3>
+<pre>
+GET / HTTP/1.1
+Host: example.com
+User-Agent: curl/7.68.0
+Accept: */*
+Connection: keep-alive
+</pre>
+
+<ul>
+    <li><strong>Linha inicial:</strong> <code>GET / HTTP/1.1</code> → método, caminho, versão</li>
+    <li><strong>Host:</strong> domínio do servidor</li>
+    <li><strong>User-Agent:</strong> identifica o cliente</li>
+    <li><strong>Accept:</strong> tipos de conteúdo aceitos</li>
+</ul>
+
+<h3>Response (Resposta)</h3>
+<pre>
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 235
+Server: nginx
+
+&lt;!doctype html&gt;
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Example Domain&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;&lt;h1&gt;Example Domain&lt;/h1&gt;
+&lt;p&gt;This domain is for use in illustrative examples...&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre>
+
+<ul>
+    <li><strong>Linha de status:</strong> <code>200 OK</code> → sucesso</li>
+    <li><strong>Content-Type:</strong> tipo do conteúdo</li>
+    <li><strong>Content-Length:</strong> tamanho em bytes</li>
+    <li><strong>Server:</strong> software do servidor</li>
+</ul>
+
+<img src="https://httpstatuses.com/img/http-response-structure.png" alt="Resposta HTTP">
+<p class="caption">Estrutura de uma resposta HTTP</
