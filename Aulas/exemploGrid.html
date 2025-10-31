@@ -4,76 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
+    <style>
 
-    .container{
-        height: 25vh;
-        width: 95vw;
-        display: grid;
-
-    }
-    @media screen and (max-width:400px) {
-    .container{
-    
-        grid-template-areas:
-        "header"
-        "main"
-        "sidebar"
-        "footer";
-    }
-
-    @media screen and (min-width:401px) and (max-width:800px) {
-      .container{
-        grid-template-areas:
-        "header header"
-        "main sidebar"        
-        "footer footer";
-    }  
-    }
-        @media screen and (min-width:801px) {
         .container{
-             grid-template-areas:
-            "header header header header"
-            "main main . sidebar"
-             "footer footer footer footer ";
-    }
+            display: grid;
+            height: 25vh;
+            width: 90vw;
         }
-    }
-    
+        @media screen and (max-width: 400px){
+            .container{
+                grid-template-areas: 
+                "header"
+                "main"
+                "sidebar"
+                "footer";
+            }
+            
+        }
 
-    .box{
-        border: 2px solid black;
-        font-size: 20px;
-        text-align: center;
-        padding: 20px;
-    }
-   .header {
-    background-color: #f77002;
-    grid-area: header;
+        @media screen and (min-width: 401px) and (max-width:800px)
+        {
+            .container{
+                grid-template-areas: 
+                "header header"
+                "main sidebar"
+                "footer footer";
+            } 
+        }
+        @media screen and (min-width: 801px) {
+            .container{
+                grid-template-areas: 
+                "header header header header"
+                "main main . sidebar"
+                "footer footer footer footer";
+            }
+            
+        }
+        /* .container{
+            display: grid;
+            height: 25vh;
+            width: 90vw;
+            grid-template-areas: 
+            "header header header header header header"
+            "main main main . . sidebar"
+            "footer footer footer footer footer footer";
+        } */
+        .box{
+            border: 2px solid #333;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px;
+        }        
+        .header{
+            grid-area: header;
+            background-color: #f77002;
+        }
+        .main{
+            grid-area: main;
+            background-color: #028df7;
+        }
+        .sidebar{
+            grid-area: sidebar;
+            background-color: #f73302;
+        }
+        .footer{
+            grid-area: footer;
+            background-color: #33f702;
+        }
 
-    }    
-    .main{
-        background-color: #20d2f1;
-          grid-area:main;
-    }
-    .sidebar{
-        background-color: #fc816b;
-          grid-area:sidebar;
-    }
-    .footer{
-        background-color: #07f107;
-    
-          grid-area:footer;
-    }
-</style>
+    </style>
+</head>
 <body>
-    
     <div class="container">
-        <div class="box header">header</div>
-        <div class="box main"  >main</div>
-        <div class="box sidebar">side bar</div>
-        <div class="box footer" >footer</div>
+        <div class="box header">Cabeçalho</div>
+        <div class="box main">Main</div>
+        <div class="box sidebar">Side Bar</div>
+        <div class="box footer">Footer</div>
     </div>
 </body>
 </html>
