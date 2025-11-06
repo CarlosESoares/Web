@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        padding:0px;
+        margin:0px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: end;
+    }
+   .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 250px;
+    height: 350px;
+    border: 1px solid black;
+
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;  
+
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+    #caixa{
+        display: flex;
+        padding: 3px;
+        width: 210px;
+        height: 50px;
+        flex-wrap: wrap;
+        border: 1px solid black;
+        flex-direction: row-reverse;
+    }
+    button{
+        width: 50px;
+        height: 20px;
+        margin-top: 5px;
+        justify-content: end;
+    }
+    .txtBox{
+        display: flex;
+        width: 200px;
+        height: 45px;
+        border: 2px solid gray
+    }
+    #Msg1{
+        background-color: bisque;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #Msg2{
+        background-color: rgb(154, 238, 154);
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #Msg3{
+        background-color: bisque;
+        justify-content:flex-start;
+        align-items: center;
+    }
+    #Msg4{
+        background-color: rgb(154, 238, 154);
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .txtBox>#Msg3>p{
+        color: gray;
+        padding: 0;
+    }
+    img{
+        order: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    #Msg2>img, #Msg4>img{
+        margin-right: 0;
+        margin-left: 5px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="txtBox" id="Msg1">
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/11186876-simbolo-de-foto-de-perfil-masculino-vetor.jpg" alt="">
+            <p>Olá tudo bem ?</p>
+        </div>
+        <div class="txtBox" id="Msg2">
+            <img src="data:image/jpeg;base64,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" alt="">
+            <p>Estou bem e voce ?</p>
+        </div>
+        <div class="txtBox" id="Msg3">
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/11186876-simbolo-de-foto-de-perfil-masculino-vetor.jpg" alt="">
+            <p>bem tbm Lorem ipsum, dolor sit amet</p>
+
+        </div>
+        <div class="txtBox" id="Msg4">             <img src="data:image/jpeg;base64,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" alt="">
+ <p>criatura.....</p></div>
+    <div id="caixa">
+        <div class="txtBox" id="Msg5"><p>Digite sua mensagem</p></div>
+        <button>Enviar</button>
+    </div>    
+    </div>
+</body>
+</html>
