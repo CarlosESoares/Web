@@ -2,14 +2,14 @@
 <head>   
    <title>Exemplo especificidade de seletores</title>
    <style>
-      /*regra 1*/ li{color:red;}
-      /*regra 2*/ .churras{color:green;}
-      /*regra 3*/ .fruta{color:gray}
-      /*regra 4*/ li+li.churras{color: black;}
-      /*regra 5*/ .churras[draggable="true"]{color: magenta;}
-      /*regra 6*/ #lip1,#lip2,#lip3{color:blue}
-      /*regra 7*/ #lip3.fruta{color:orange}
-      /*regra 8*/ ol>li.churras#lip5{color:purple}
+      /*regra 1 aplica para todas as tags li*/ li{color:red;}
+      /*regra 2 aplica para todas as tags que possuem a classe churras*/ .churras{color:green;}
+      /*regra 3*aplica para todas as tags que possuem a classe fruta*/ .fruta{color:gray}
+      /*regra 4aplica para todas as tags que possuem a classe li e classe churras*/ li+li.churras{color: black;}
+      /*regra 5 aplica para todas as tags que possuem a classe churras e sejam arrastadas */ .churras[draggable="true"]{color: magenta;}
+      /*regra 6 aplica para os ids selecionadas*/ #lip1,#lip2,#lip3{color:blue}
+      /*regra 7 aplica para o id e classe especificada*/ #lip3.fruta{color:orange}
+      /*regra 8 aplica para quem esteja em uma ol seja um li e tenha a classe churras*/ ol>li.churras#lip5{color:purple}
    </style>
 </head>
 <body>   
