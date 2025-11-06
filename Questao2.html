@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{display:flex; }
+    /*seletor por classe define para tudo que for da classe box*/
+    .box{
+        background-color: bisque;
+        color: blue;
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+    /*seletor por id define para todos os que tiverem o mesmo id*/
+    #ex2,#ex3{
+        background-color: green;
+        color: red;
+    }
+    /*Seletor mais especifico que contem o caminho das classes e ids do html para chegar no componente. o mair que tem*/
+
+    .container>.box#ex3{
+        background-color: black;
+        color: white;
+    }
+    #foguete{
+    rotate: -30deg;
+    font-size: 100px;
+    animation: subir 5s ease-in-out infinite;
+    }
+    @keyframes subir {
+        from{
+            transform: translateY(100vh);
+        }
+        to{
+            transform: translate(0vh);
+
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="box" id="ex1">Exemplo De <br> Classe</div>
+        <div class="box" id="ex2">Exemplo de <br> Id</div>
+        <div class="box" id="ex3">Exemplo de <br> classe mãe+filho <br>+id</div>
+    </div></body>
+    <!--Animação-->
+        <div id="foguete">🚀</div>
+
+</html>
