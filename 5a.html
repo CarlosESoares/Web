@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        display:grid;
+        grid-template-areas:
+        "box1 box2 box3 ." 
+        "box4 box2 box5 bolas"
+        "box6 box6 . . "
+        }
+   
+    .box{
+        border: 2px solid #333;
+        padding: 0px;
+        font-size: 30px;
+        background-color: bisque;
+        
+    }
+    #box1{
+        grid-area: box1;
+        margin: 0;
+        width: 300px;
+        height: 150px;
+        }
+    #box2{
+        grid-area: box2;
+        width: 200px;
+        height: 295px;
+        background-color: gray;
+    }
+    #box3{
+        grid-area: box3;
+        width: 300px;
+        height: 150px;
+        background-color: aquamarine;
+    }
+    #box4{
+        grid-area: box4;
+        width: 300px;
+        height:140px;
+        background-color: aqua;
+    }
+    #box5{
+        grid-area: box5;
+        width: 200px;
+        height: 300px;
+        background-color: blue;
+    }
+    #box6{
+        position: fixed;
+        bottom: 200px;
+        grid-area: box6;
+        background-color: crimson;
+        width: 500px;
+        height: 150px;
+    }
+    #box7,#box8,#box9,#box10{
+        background-color: chocolate;
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+
+    }
+    #bolas{
+        grid-area: bolas;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        position: relative;
+        right: 101px;        
+    }
+    
+    
+    #box8{      
+        background-color: blueviolet;}
+    #box9{  
+        
+        background-color: brown; }
+    #box10{
+        background-color: cadetblue;    }
+</style>
+<body>
+    <div class="container">
+        <div id="linha1"><div class="box" id="box1">1</div></div>
+            
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+            <div class="box" id="box5"></div>
+            <div class="box" id="box6"></div>
+            <div id="bolas">
+             <div class="box"id="box7"></div>
+            <div class="box" id="box8"></div>
+            <div class="box" id="box9"></div>
+            <div class="box" id="box10"></div></div>
+           
+    </div>
+</body>
+</html>
