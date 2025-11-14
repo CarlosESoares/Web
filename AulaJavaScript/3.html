@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //criando pagina html por meio de javaScript / ruim porque pede para re-gerar a pagina
+        let body=document.body; //dizendo que a variavel body recebera a tag body do html
+        body.innerHTML=`<button>clike aqui </button>` //dizendo para o body que ele tera uma elemente html button com o comando .innerHTML
+        //metodo 2 / metodo mais eficiente
+        let b = document.createElement("button") // dizendo que a variavel tem um botao
+        b.innerHTML="click em mim 2" //definindo o texto
+        document.body.appendChild(b) //dizendo que o b é um filho de body
+        let i =0 //criando variavel contadora
+          p= document.createElement("p");//definindo que p contem um elemento do tipo paragrafo 
+            document.body.appendChild(p) //dizendo que p é filho do body
+         p.id="texto"
+        b.addEventListener("click",()=>{
+            i++ //variavel contadora 
+            p.innerHTML=i //colocando o conteudo do p 
+
+        })
+    </script>
+</body>
+</html>

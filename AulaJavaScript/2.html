@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>java Script 2</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button>click em mim</button>
+    <script>
+        let b=document.querySelector("button")
+        let contador =0;
+        b.style.backgroundColor="pink"
+        b.style.width="50vw"
+        b.style.height="50vh"
+        b.addEventListener("click",()=>/*ou coloque function(){}*/{
+            contador++;
+            b.innerHTML=contador
+        })
+    </script>
+</body>
+</html>
