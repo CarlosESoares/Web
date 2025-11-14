@@ -15,8 +15,8 @@
         b.addEventListener("click",()=>{
             let rand=Math.random();
 
-            let min = prompt("informe o valor minino do intervalo")
-            let max = prompt("informe o valor maximo do intervalo")
+            let min = Number.parseInt(prompt("informe o valor minino do intervalo"))
+            let max = Number.parseInt(prompt("informe o valor maximo do intervalo"))
             random1 =(rand*(max-min))+min
             console.log(random1)  
             div.innerHTML=random1;          
