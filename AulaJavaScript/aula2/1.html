@@ -17,17 +17,17 @@
 </style>
 <body>
     <div id="formulario">
-    <label for="id">Id</label>
-    <input type="text" id="id" name="id">
-    
     <label for="Email">Email</label>
     <input type="email" id="email" name="email">
     
     <label for="nome">Nome</label>
     <input type="text" id="nome" name="nome">
     
-    <button id="botaosalvar">Salvar</button>
+    <button id="botaosalvar">Salvar</button>   
+     <button id="limpar">limpar</button>
+
     </div>
+    
     <div id="listagem">
     </div>
     <script>
@@ -36,7 +36,9 @@
         let inputEmail = document.querySelector("#email")
 
         let button = document.querySelector("#botaosalvar")
+        
         var listaNomes=[];
+
         if(localStorage.getItem("ListaNomes")){
             listaNomes =JSON.parse(localStorage.getItem("ListaNomes"));
         }else{
@@ -45,9 +47,10 @@
         let listagem  = document.querySelector("#listagem")
         
         button.addEventListener("click",()=>{
-            
+            let maxid=listaNomes.length;
+
             listaNomes.push(
-            {"ID":inputID.value,
+            {"ID":maxid+1,
             "Email":inputEmail.value,
             "Nome":inputnome.value});
 
@@ -60,6 +63,7 @@
             listagem.innerHTML="";
 
         listaNomes.forEach( (e) =>{
+            
             var item =`
         <div class="itemLista">
             <input type="text" class="id" value=${e.ID}>
@@ -70,6 +74,11 @@
     
     })
         
+    let limpar = document.querySelector("#limpar");
+        limpar.addEventListener("click",()=>{
+            localStorage.clear();
+            listagem.innerHTML="";
+        })
             }
     </script>
     

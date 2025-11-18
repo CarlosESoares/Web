@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <h2>Piada do chuck norris</h2>
+        <div id="piada"></div>
+    </div>
+    <script>
+        let piada = document.querySelector("#piada");
+        //um fetch retorna uma PROMISE 
+        fetch("https://api.chucknorris.io/jokes/random").then((response)=>{
+            return response.json();
+
+        }).then((data)=>{
+            console.log(data)
+            piada.innerHTML=data.value;
+        })
+    </script>
+</body>
+</html>
