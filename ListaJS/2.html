@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(215, 249, 200);
+    }
+    button{
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: lightgray;
+    }
+    </style>
+<body>
+    <button id="button">Aperte</button>
+    
+</body>
+</html>
+<script>
+    b = document.querySelector("#button")
+    b.addEventListener("click",()=>{
+      
+        let t1 = "texto";      // string
+        let t2 = 4;            // number
+        let t3 = true;         // boolean
+        let t4 = Object;       // function
+        let t5 = undefined;    // undefined
+        let t6 = null;         // object (comportamento do JS)
+        let t7 = Array;        // function
+
+        function mostrar(valor) {
+            let p = document.createElement("p");
+            p.textContent = `Valor: ${valor} | typeof: ${typeof valor}`;
+            document.body.appendChild(p);
+        }
+
+        mostrar(t1);
+        mostrar(t2);
+        mostrar(t3);
+        mostrar(t4);
+        mostrar(t5);
+        mostrar(t6);
+        mostrar(t7);
+
+    })
+</script>
