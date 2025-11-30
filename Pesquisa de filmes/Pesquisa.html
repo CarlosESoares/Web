@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Filmes OMDB</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 10px 15px;
+            background: #1b1b1b;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            outline: none;
+            transition: 0.2s;
+            width: 250px;
+        }
+
+        input:focus {
+            border-color: #555;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #333;
+        }
+
+        #filmes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 30px;
+        }
+
+        .filme {
+            background: #141414;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #222;
+            transition: transform 0.2s;
+        }
+
+        .filme:hover {
+            transform: scale(1.05);
+        }
+
+        .imgPoster {
+            width: 100%;
+            border-radius: 6px;
+        }
+
+        .filmeTitulo {
+            font-size: 15px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f4f4f4;
+        }
+
+        .filmeAno {
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Busca de Filmes</h2>
+
+    <div class="search-box">
+        <input type="text" id="titulo" name="titulo" placeholder="Digite o nome do filme...">
+        <button id="buscar">Buscar</button>
+    </div>
+
+    <div id="filmes"></div>
+
+    <script>
+        let inputFilme = document.querySelector("#titulo");
+        let divResultado = document.querySelector("#filmes");
+        let button = document.querySelector("#buscar");
+
+        button.addEventListener("click", () => {
+            divResultado.innerHTML = ""; // limpa antes de buscar
+
+            fetch("http://www.omdbapi.com/?s=" + inputFilme.value + "&apikey=f77bfada")
+            .then((response) => response.json())
+            .then((data) => {
+                if (!data.Search) {
+                    divResultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
+                    return;
+                }
+
+                data.Search.forEach((filme) => {
+                    let divfilme =
+                        `<div class="filme">
+                            <img src="${filme.Poster}" alt="" class="imgPoster">
+                            <p class="filmeTitulo">${filme.Title}</p>
+                            <p class="filmeAno">${filme.Year}</p>
+                        </div>`;
+                    divResultado.innerHTML += divfilme;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
