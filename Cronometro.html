@@ -1,9 +1,13 @@
-<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronometro</title>
 
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
             background: #111;
             color: #fff;
@@ -14,7 +18,12 @@
             margin: 0;
         }
 
-        .container{
+        .wrapper {
+            display: flex;
+            gap: 20px;
+        }
+
+        .container {
             text-align: center;
             background: #1c1c1c;
             padding: 30px;
@@ -22,12 +31,12 @@
             width: 300px;
         }
 
-        #tempo{
+        #tempo {
             font-size: 40px;
             margin-bottom: 20px;
         }
 
-        button{
+        button {
             padding: 10px 20px;
             margin: 5px;
             border: none;
@@ -36,21 +45,31 @@
             font-size: 16px;
         }
 
-        #start{ background: #4caf50; color: white; }
-        #pause{ background: #ff9800; color: white; }
-        #reset{ background: #f44336; color: white; }
+        #start {
+            background: #4caf50;
+            color: white;
+        }
 
-        .pausas{
-            margin-top: 20px;
-            text-align: left;
-            background: #222;
-            padding: 10px;
-            border-radius: 5px;
-            max-height: 150px;
+        #pause {
+            background: #ff9800;
+            color: white;
+        }
+
+        #reset {
+            background: #f44336;
+            color: white;
+        }
+
+        .pausas {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 10px;
+            width: 220px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
-        .pausas p{
+        .pausas p {
             margin: 5px 0;
             background: #333;
             padding: 5px;
@@ -58,87 +77,119 @@
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h2>Cronometro</h2>
-        <div id="tempo">00:00:00</div>
+    <div class="wrapper">
 
-        <button id="start">Iniciar</button>
-        <button id="pause">Pausar</button>
-        <button id="reset">Resetar</button>
+        <div class="container">
+            <h2>Cronometro</h2>
+            <div id="tempo">00:00:00</div>
+
+            <button id="start">Iniciar</button>
+            <button id="pause">Pausar</button>
+            <button id="reset">Resetar</button>
+        </div>
 
         <div class="pausas">
             <h4>Tempos de pausa:</h4>
             <div id="listaPausas"></div>
         </div>
+
     </div>
+
     <script>
-    let inicio = null;          // Momento em que o cronômetro começou
-    let tempoPausado = 0;       // Soma de todos os tempos anteriores
-    let intervalo = null;       // ID do setInterval
+        // Guarda o momento exato em que o cronômetro começou
+        let horarioDeInicioDoCronometro = null;
 
-    const visor = document.getElementById("tempo");
-    const listaPausas = document.getElementById("listaPausas");
+        // Guarda o tempo total acumulado quando houve pausas
+        let tempoTotalAcumuladoPausado = 0;
 
-    // Formata segundos → HH:MM:SS
-    function formatarTempo(ms){
-        let totalSeg = Math.floor(ms / 1000);
-        let h = String(Math.floor(totalSeg / 3600)).padStart(2, "0");
-        let m = String(Math.floor((totalSeg % 3600) / 60)).padStart(2, "0");
-        let s = String(totalSeg % 60).padStart(2, "0");
-        return `${h}:${m}:${s}`;
-    }
+        // Guarda o ID do intervalo para poder iniciar/parar
+        let intervaloDeAtualizacaoDoTempo = null;
 
-    function atualizarVisor(){
-        let agora = new Date();
-        let tempoAtual = agora - inicio + tempoPausado; // diferença do sistema
-        visor.textContent =  (tempoAtual);
-    }
+        // Elemento onde o tempo aparece na tela
+        const elementoQueMostraOTempo = document.getElementById("tempo");
 
-    // INICIAR
-    function iniciarCronometro(){
-        if(intervalo) return; // impede multiplos intervalos
+        // Lista onde mostramos os registros de pausas
+        const listaDeRegistrosDePausa = document.getElementById("listaPausas");
 
-        inicio = new Date(); // marca a hora de inicio
-        intervalo = setInterval(atualizarVisor, 100); // atualiza 10x por segundo
-    }
 
-    // PAUSAR
-    function pausarCronometro(){
-        if(!intervalo) return;
+        // Converte milissegundos em HH:MM:SS
+        function converterMilissegundosParaFormatoDeRelogio(milissegundos) {
+            // Converte ms em segundos inteiros
+            let segundosTotais = Math.floor(milissegundos / 1000);
 
-        clearInterval(intervalo);
-        intervalo = null;
+            // Calcula horas, minutos e segundos
+            let horas = String(Math.floor(segundosTotais / 3600)).padStart(2, "0");
+            let minutos = String(Math.floor((segundosTotais % 3600) / 60)).padStart(2, "0");
+            let segundos = String(segundosTotais % 60).padStart(2, "0");
 
-        let agora = new Date();
-        tempoPausado += agora - inicio;
+            return `${horas}:${minutos}:${segundos}`;
+        }
 
-        // Registrar pausa
-        let item = document.createElement("p");
-        item.textContent = formatarTempo(tempoPausado);
-        listaPausas.appendChild(item);
-    }
 
-    // RESETAR
-    function resetarCronometro(){
-        clearInterval(intervalo);
-        intervalo = null;
-        inicio = null;
-        tempoPausado = 0;
-        visor.textContent = "00:00:00";
-        listaPausas.innerHTML = "";
-    }
+        // Atualiza o visor do cronômetro na tela
+        function atualizarTempoNoVisor() {
+            let horarioAgora = new Date(); // pega hora atual do sistema
+            let tempoDecorrido = horarioAgora - horarioDeInicioDoCronometro + tempoTotalAcumuladoPausado;
+            elementoQueMostraOTempo.textContent = converterMilissegundosParaFormatoDeRelogio(tempoDecorrido);
+        }
 
-    // Botões
-    document.getElementById("start").addEventListener("click", iniciarCronometro);
-    document.getElementById("pause").addEventListener("click", pausarCronometro);
-    document.getElementById("reset").addEventListener("click", resetarCronometro);
 
-    // Atalhos de teclado
-    document.addEventListener("keydown", (e) => {
-        if(e.key === "s" || e.key === "S") iniciarCronometro();
-        if(e.key === "p" || e.key === "P") pausarCronometro();
-        if(e.key === "r" || e.key === "R") resetarCronometro();
-    });
-</script>
+        // Inicia o cronômetro
+        function iniciarContagemDoCronometro() {
+            if (intervaloDeAtualizacaoDoTempo) return; // evita iniciar duas vezes
+
+            horarioDeInicioDoCronometro = new Date(); // marca hora do inicio
+            intervaloDeAtualizacaoDoTempo = setInterval(atualizarTempoNoVisor, 100); // atualiza 10x/s
+        }
+
+
+        // Pausa o cronômetro
+        function pausarContagemDoCronometro() {
+            if (!intervaloDeAtualizacaoDoTempo) return; // só pausa se estiver rodando
+
+            clearInterval(intervaloDeAtualizacaoDoTempo); // interrompe o cronômetro
+            intervaloDeAtualizacaoDoTempo = null;
+
+            let horarioAgora = new Date(); // pega o momento da pausa
+            tempoTotalAcumuladoPausado += horarioAgora - horarioDeInicioDoCronometro; // adiciona ao total
+
+            // Cria item com o tempo pausado
+            let novoRegistro = document.createElement("p");
+            novoRegistro.textContent = converterMilissegundosParaFormatoDeRelogio(tempoTotalAcumuladoPausado);
+            listaDeRegistrosDePausa.appendChild(novoRegistro);
+        }
+
+
+        // Reseta o cronômetro completamente
+        function resetarCronometroParaZero() {
+            clearInterval(intervaloDeAtualizacaoDoTempo);
+            intervaloDeAtualizacaoDoTempo = null;
+
+            horarioDeInicioDoCronometro = null;
+            tempoTotalAcumuladoPausado = 0;
+
+            elementoQueMostraOTempo.textContent = "00:00:00";
+            listaDeRegistrosDePausa.innerHTML = "";
+        }
+
+
+        // Eventos de clique dos botões
+        document.getElementById("start").addEventListener("click", iniciarContagemDoCronometro);
+        document.getElementById("pause").addEventListener("click", pausarContagemDoCronometro);
+        document.getElementById("reset").addEventListener("click", resetarCronometroParaZero);
+
+
+        // Atalhos do teclado (S, P, R)
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "s" || e.key === "S") iniciarContagemDoCronometro();
+            if (e.key === "p" || e.key === "P") pausarContagemDoCronometro();
+            if (e.key === "r" || e.key === "R") resetarCronometroParaZero();
+        });
+    </script>
+
+</body>
+
+</html>

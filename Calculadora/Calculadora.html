@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Morfador Samurai</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="morpher">
-    <div id="Tela">0</div>
-    <div class="painel">
-        <div class="Numeros">
-            <div class="btn" data.value="7">7</div>
-            <div class="btn" data.value="8">8</div>
-            <div class="btn" data.value="9">9</div>
-            <div class="btn op" id="subtração" data.value="-">
-                <img src="rosa.jfif">
+    <div class="morpher">
+        <div id="Tela">0</div>
+        <div class="painel">
+            <div class="Numeros">
+                <div class="btn" data-value="7">7</div>
+                <div class="btn" data-value="8">8</div>
+                <div class="btn" data-value="9">9</div>
+
+                <div class="btn op" id="subtracao" data-value="-">
+                    <img src="rosa.jfif">
+                </div>
+
+                <div class="btn" data-value="4">4</div>
+                <div class="btn" data-value="5">5</div>
+                <div class="btn" data-value="6">6</div>
+
+                <div class="btn op" id="divisao" data-value="/">
+                    <img src="preto.jfif">
+                </div>
+
+                <div class="btn" data-value="1">1</div>
+                <div class="btn" data-value="2">2</div>
+                <div class="btn" data-value="3">3</div>
+
+                <div class="btn op" id="Multiplicacao" data-value="*">
+                    <img src="dourado.jfif">
+                </div>
+
+                <div class="btn" data-value="0">0</div>
+                <div class="btnC" data-value="C">C</div>
+
+                <div class="btn op" id="Soma" data-value="+">
+                    <img src="vermelho.jfif">
+                </div>
+
+                <div class="btn equal" data-value="=">=</div>
+
             </div>
-            <div class="btn" data.value="4">4</div>
-            <div class="btn" data.value="5">5</div>
-            <div class="btn" data.value="6">6</div>
-            <div class="btn op" id="divisao" data.value="/">
-                <img src="preto.jfif">
-            </div>
-            <div class="btn" data.value="1">1</div>
-            <div class="btn" data.value="2">2</div>
-            <div class="btn" data.value="3">3</div>
-            <div class="btn op" id="Multiplicacao" data.value="*">
-                <img src="dourado.jfif" >
-            </div>
-            <div class="btn" data.value="0">0</div>
-            <div class="btnC" data.value="C">C</div>
-            <div class="btn op" id="Soma" data.value="+">
-                <img src="vermelho.jfif">
-            </div>
-            <div class="btn equal" data.value="=">=</div>
         </div>
     </div>
-</div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

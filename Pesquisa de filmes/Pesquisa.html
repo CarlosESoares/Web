@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,24 +124,25 @@
             divResultado.innerHTML = ""; // limpa antes de buscar
 
             fetch("http://www.omdbapi.com/?s=" + inputFilme.value + "&apikey=f77bfada")
-            .then((response) => response.json())
-            .then((data) => {
-                if (!data.Search) {
-                    divResultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
-                    return;
-                }
+                .then((response) => response.json())
+                .then((data) => {
+                    if (!data.Search) {
+                        divResultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
+                        return;
+                    }
 
-                data.Search.forEach((filme) => {
-                    let divfilme =
-                        `<div class="filme">
+                    data.Search.forEach((filme) => {
+                        let divfilme =
+                            `<div class="filme">
                             <img src="${filme.Poster}" alt="" class="imgPoster">
                             <p class="filmeTitulo">${filme.Title}</p>
                             <p class="filmeAno">${filme.Year}</p>
                         </div>`;
-                    divResultado.innerHTML += divfilme;
+                        divResultado.innerHTML += divfilme;
+                    });
                 });
-            });
         });
     </script>
 </body>
+
 </html>
