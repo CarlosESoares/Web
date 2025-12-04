@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular IMC</title>
+    <style>
+        body{
+            display: grid;
+            margin: 0;
+            height: 100vh;
+            align-content: center;
+            justify-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            grid-template-areas: "cont img";
+            grid-template-columns: 3fr 2fr;
+        }
+
+        .container{
+            grid-area: cont;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            min-height: 50%;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid black;
+            border-radius: 25px;
+            gap: 10px;
+            background-color: rgb(255, 237, 215);
+        }
+
+        input{
+            width: 80%;
+            height: 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 1px solid #532281;
+            padding-left: 8px;
+            margin-top: 0;
+        }
+        label{
+            width: 80%;
+            margin-bottom: 0;
+            height: 8px;
+        }
+
+        button{
+            width: 82%;
+            height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: white;
+            border-radius: 10px;
+            background-color: blueviolet;
+            border: 3px solid #532281;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        button:hover{
+            background-color: #532281;
+            border: 3px solid #341650;
+
+        }
+
+        #resultadoIMC, #classificacao{
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+        img{
+            grid-area: img;
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora IMC</h1>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <label for="peso">Peso (Kg)</label>
+        <input type="number" id="peso" step="0.1" placeholder="Ex: 70">
+        <label for="altura">Altura (m)</label>
+        <input type="number" id="altura" step="0.01" placeholder="Ex: 1.7">
+        <button id="calcular">Calcular</button>
+        <p id="resultadoIMC"></p>
+        <p id="classificacao"></p>
+    </div>
+    <img alt="" id="imgPerfil">
+
+    <script>
+        let calcular = document.querySelector("#calcular");
+        let inputNome = document.querySelector("#nome");
+        let inputPeso = document.querySelector("#peso");
+        let inputAltura = document.querySelector("#altura");
+        let resultadoIMC = document.querySelector("#resultadoIMC");
+        let classificacao = document.querySelector("#classificacao");
+        let imagem = document.querySelector("#imgPerfil");
+
+        calcular.addEventListener("click", () => {
+            let nome = inputNome.value.toString();
+            let peso = parseFloat(inputPeso.value);
+            let altura = parseFloat(inputAltura.value);
+            let IMC, grau;
+
+            if (inputNome.value.toString() == '' || !peso || !altura || peso <= 0 || altura <= 0) {
+                alert("Todos os campos devem ser preenchidos corretamente!");
+            } else {
+                IMC = peso / (altura * altura);
+                IMC = IMC.toFixed(2);
+
+                resultadoIMC.innerHTML = `IMC: ${IMC}`
+                
+                if (IMC < 18.5) {
+                    classificacao.innerHTML = `Abaixo do peso`;
+                    grau = 1;
+                } else if (IMC < 24.9) {
+                    classificacao.innerHTML = `Peso normal`;
+                    grau = 2;
+                } else if (IMC < 29.9) {
+                    classificacao.innerHTML = `Sobrepeso`;
+                    grau = 3;
+                } else if (IMC < 34.9) {
+                    classificacao.innerHTML = `Obesidade grau 1`;
+                    grau = 4;
+                } else if (IMC < 39.9) {
+                    classificacao.innerHTML = `Obesidade grau 2`;
+                    grau = 5;
+                } else {
+                    classificacao.innerHTML = `Obesidade grau 3`;
+                    grau = 6;
+                }
+            }
+            switch (grau) {
+                case 1:
+                    imagem.src="./img/magro.png";
+                    break;
+                case 2:
+                    imagem.src="./img/normal.png";
+                    break;
+                case 3:
+                    imagem.src="./img/sobrepeso.png";
+                    break;
+                case 4:
+                    imagem.src="./img/obeso1.png";
+                    break;
+                case 5:
+                    imagem.src="./img/obeso2.png";
+                    break;
+                case 6:
+                    imagem.src="./img/obeso3.png";
+                    break;
+            }
+        })
+    </script>
+</body>
+
+</html>

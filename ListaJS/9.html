@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora JS</title>
+        <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .calculadora{
+            border: 1px solid black;
+            display: grid;
+            width: 25%;
+            height: 65%;
+            grid-template-areas: 
+                "display display display display"
+                "soma subtracao mult divisao"
+                "num7 num8 num9 igual"
+                "num4 num5 num6 igual"
+                "num1 num2 num3 igual"
+                "num0 ponto delete igual";
+            grid-template-rows: 2fr 1fr 1fr 1fr 1fr 1fr;
+        }
+        #entrada{
+            padding: 0;
+            margin: 0;
+        }
+        
+        #display{
+            grid-area: display;
+            max-width: 100%;
+            overflow: auto;
+            align-content: center;
+            text-align: end;
+            font-size: 50px;
+            background-color: #2c2c2c;
+            color: white;
+        }
+
+        .botao{
+            background-color: #2c2c2c;
+            border: 1px solid black;
+            border-radius: 0;
+            color: white;
+            font-size: 25px;
+        }
+
+        .botao:hover{
+            background-color: #2c2c2c75;
+        }
+        
+        .operador{
+            background-color: #777777;
+        }
+
+        #igual:hover{
+            background-color: rgba(255, 166, 0, 0.63);
+        }
+
+        #num1{
+            grid-area: num1;
+        }
+        #num2{
+            grid-area: num2;
+        }
+        #num3{
+            grid-area: num3;
+        }
+        #num4{
+            grid-area: num4;
+        }
+        #num5{
+            grid-area: num5;
+        }
+        #num6{
+            grid-area: num6;
+        }
+        #num7{
+            grid-area: num7;
+        }
+        #num8{
+            grid-area: num8;
+        }
+        #num9{
+            grid-area: num9;
+        }
+        #num0{
+            grid-area: num0;
+        }
+        #ponto{
+            grid-area: ponto;
+        }
+        #igual{
+            grid-area: igual;
+            background-color: orange;
+        }
+        #delete{
+            grid-area: delete;
+        }
+        #mult{
+            grid-area: mult;
+        }
+        #divisao{
+            grid-area: divisao;
+        }
+        #soma{
+            grid-area: soma;
+        }
+        #sub{
+            grid-area: subtracao;
+        }
+
+        #display::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #display::-webkit-scrollbar-track {
+            background: #2c2c2c;
+        }
+
+        #display::-webkit-scrollbar-thumb {
+            background-color: #777777;
+            border-radius: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="calculadora">
+            <div id="display">
+                <p id="entrada"></p>
+            </div>
+            <button class="botao operador" id="soma">+</button>
+            <button class="botao operador" id="sub">-</button>
+            <button class="botao operador" id="mult">X</button>
+            <button class="botao operador" id="divisao">/</button>
+            <button class="nums botao" id="num1">1</button>
+            <button class="nums botao" id="num2">2</button>
+            <button class="nums botao" id="num3">3</button>
+            <button class="nums botao" id="num4">4</button>
+            <button class="nums botao" id="num5">5</button>
+            <button class="nums botao" id="num6">6</button>
+            <button class="nums botao" id="num7">7</button>
+            <button class="nums botao" id="num8">8</button>
+            <button class="nums botao" id="num9">9</button>
+            <button class="nums botao" id="num0">0</button>
+            <button class="botao" id="ponto">.</button>
+            <button class="botao" id="igual">=</button>
+            <button class="botao" id="del">AC</button>
+        </div>
+
+        <script>
+        let verificarPonto = true, verificarDigito = false, verificarOperador = false;
+
+        num1.addEventListener("click", ()=>{
+            entrada.innerHTML+=`1`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num2.addEventListener("click", ()=>{
+            entrada.innerHTML+=`2`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num3.addEventListener("click", ()=>{
+            entrada.innerHTML+=`3`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num4.addEventListener("click", ()=>{
+            entrada.innerHTML+=`4`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num5.addEventListener("click", ()=>{
+            entrada.innerHTML+=`5`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num6.addEventListener("click", ()=>{
+            entrada.innerHTML+=`6`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num7.addEventListener("click", ()=>{
+            entrada.innerHTML+=`7`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num8.addEventListener("click", ()=>{
+            entrada.innerHTML+=`8`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num9.addEventListener("click", ()=>{
+            entrada.innerHTML+=`9`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        num0.addEventListener("click", ()=>{
+            entrada.innerHTML+=`0`;
+            verificarDigito = true;
+            verificarOperador = false;
+        })
+        del.addEventListener("click", ()=>{
+            entrada.innerHTML=``;
+            verificarPonto = true;
+            verificarOperador = false;
+            verificarDigito = false;
+        })
+        soma.addEventListener("click", ()=>{
+            if(entrada.textContent.length >= 1 && !verificarOperador){
+                entrada.innerHTML+=`+`;
+                verificarPonto = true;
+                verificarDigito = false;
+            }
+            verificarOperador = true;
+        })
+        sub.addEventListener("click", ()=>{
+            if(entrada.textContent.length >= 1 && !verificarOperador){
+                entrada.innerHTML+=`-`;
+                verificarPonto = true;
+                verificarDigito = false;
+            }
+            verificarOperador = true;
+        })
+        mult.addEventListener("click", ()=>{
+            if(entrada.textContent.length >= 1 && !verificarOperador){
+                entrada.innerHTML+=`*`;
+                verificarPonto = true;
+                verificarDigito = false;
+            }
+            verificarOperador = true;
+        })
+        divisao.addEventListener("click", ()=>{
+            if(entrada.textContent.length >= 1 && !verificarOperador){
+                entrada.innerHTML+=`/`;
+                verificarPonto = true;
+                verificarDigito = false;
+            }
+            verificarOperador = true;
+        })
+        ponto.addEventListener("click", ()=>{
+            if((entrada.textContent.length == 0 && !verificarDigito) || (entrada.textContent.length > 1 && !verificarDigito)){
+                entrada.innerHTML+=`0.`;
+                verificarDigito = true;
+                verificarOperador = false;
+            } else if (entrada.textContent.length >= 1 && verificarPonto) {
+                entrada.innerHTML+=`.`;
+                verificarOperador = true;
+            }
+            verificarPonto = false;
+        })
+        igual.addEventListener("click", ()=>{
+            if(entrada.textContent.length != 0){
+                entrada.innerHTML = `${eval(entrada.textContent)}`
+            }
+            verificarDigito = true;
+        })
+    </script>
+    </body>
+</html>

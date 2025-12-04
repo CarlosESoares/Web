@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Palíndromos</title>
+</head>
+<body>
+    <input type="text" id="palavra" placeholder="Digite sua palavra aqui">
+    <button id="verificar">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        let inputText = document.querySelector("#palavra")
+        let botao = document.querySelector("#verificar")
+        let resultado = document.querySelector("#resultado");
+
+        botao.addEventListener("click", ()=>{
+            if(inputText.value == inputText.value.split('').reverse().join('') && inputText.value.length > 1){
+                resultado.innerHTML = `É palíndromo`
+            } else {
+                if(inputText.value.length <= 1){
+                    alert("Insisra uma palavra com pelo menos duas letras");
+                } else {
+                    resultado.innerHTML = `Não é palíndromo`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

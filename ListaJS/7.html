@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudança de Cor</title>
+    <style>
+        body{
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        #botao{
+            padding: 10px;
+            font-size: large;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="botao">Alterar Cor de Fundo</button>
+    <script>
+        let b = document.querySelector("#botao");
+        let body = document.querySelector("body");
+
+        b.addEventListener("click", ()=>{
+            body.style.backgroundColor =`rgb(${randColor()}, ${randColor()}, ${randColor()})`
+        });
+
+        function randColor(){
+            r = (Math.random() * 255).toFixed(0);
+            return r;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvar no LocalStorage</title>
+</head>
+
+<body>
+    <input type="text" id="nameInput" placeholder="Digite seu nome">
+    <button id="saveButton">Salvar</button>
+    <p id="greeting"></p>
+
+    <script>
+        let nameInput = document.querySelector("#nameInput")
+        let saveButton = document.querySelector("#saveButton")
+        let greeting = document.querySelector("#greeting")
+
+        saveButton.addEventListener("click", () => {
+            let name = nameInput.value
+            localStorage.setItem("userName", name)
+            greeting.textContent = `Olá, ${name}! Seu nome foi salvo.`
+        })
+
+        if (localStorage.getItem("userName")) {
+            let storedName = JSON.parse(JSON.stringify(localStorage.getItem("userName")))
+            greeting.textContent = `Olá, ${storedName}! Bem-vindo de volta.`
+        } else {
+            greeting.textContent = "Bem-vindo! Por favor, insira seu nome."
+        }
+    </script>
+</body>
+
+</html>

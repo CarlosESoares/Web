@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrar Números Primos</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+            gap: 10px;
+            margin: 10px;
+        }
+        #resultado {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input id="min" type="number" placeholder="Mínimo">
+        <input id="max" type="number" placeholder="Máximo">
+        <button id="enviar">Encontrar Primos</button>
+    </div>
+    <p id="resultado"></p>
+
+    <script>
+        let inputMin = document.querySelector("#min")
+        let inputMax = document.querySelector("#max")
+        let botao = document.querySelector("#enviar")
+        let resultado = document.querySelector("#resultado")
+        let max, min
+
+        function isPrimo(n) {
+            if (n == 1) {
+                return false
+            }
+
+            if (n == 2) {
+                return true
+            }
+
+            if (n % 2 == 0) {
+                return false
+            }
+
+            for (let i = 3; i * i <= n; i += 2) {
+                if (n % i == 0) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        function findPrimos() {
+            var listaPrimos = []
+            for (let i = min; i <= max; i++) {
+                if (isPrimo(i)) {
+                    listaPrimos.push(i)
+                }
+            }
+            return listaPrimos
+        }
+
+        botao.addEventListener("click", () => {
+            min = parseInt(inputMin.value)
+            max = parseInt(inputMax.value)
+
+            if (Number.isNaN(max) || Number.isNaN(min) || (max < min)) {
+                alert("Digite valores válidos")
+            } else {
+                let primosEncontrados = findPrimos()
+                resultado.innerHTML = `${primosEncontrados.join(', ')}`
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero Aleatório Personalizado</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sorteio de Números</h1>
+    <div class="container">
+        <input type="number" id="min" placeholder="Min">
+        <input type="number" id="max" placeholder="Max">
+        <button id="sortear">Sortear</button>
+        <button id="limpar">Limpar</button>
+
+        <p id="resultado"></p>
+        <ol id="listaNum"></ol>
+    </div>
+
+    <script>
+        let botao = document.querySelector("#sortear");
+        let limpar = document.querySelector("#limpar");
+        let resultado = document.querySelector("#resultado");
+        let lista = document.querySelector("#listaNum");
+        let inputMax = document.querySelector("#max");
+        let inputMin = document.querySelector("#min");
+
+        function RandomNumber() {
+            let min = parseInt(inputMin.value);
+            let max = parseInt(inputMax.value);
+            let verify = false;
+
+            if (Number.isNaN(max) || Number.isNaN(min) || max < min) {
+                alert("Insira valores válidos para começar!");
+            } else {
+                max -= min;
+
+                let r = (Math.random() * (max + 1)) + min;
+                r = Math.floor(r)
+
+                let itemEncontrado = listaNumbers.find(l=>l.val == r)
+
+                if (itemEncontrado) {
+                    itemEncontrado.cont++;
+                } else {
+                    listaNumbers.push({ "val": r, "cont": 1 });
+                }
+
+                resultado.innerHTML = `Resultado: ${r}`;
+                lista.innerHTML = ``
+                listaNumbers.sort((a, b) => a.val - b.val);
+                listaNumbers.forEach((l) => {
+                    lista.innerHTML += `<li>Número: ${l.val} - Sorteado: ${l.cont}x</li>`
+                })
+            }
+        }
+
+        botao.addEventListener("click", () => {
+            RandomNumber();
+            localStorage.setItem("listaNumbers", JSON.stringify(listaNumbers));
+        })
+
+        limpar.addEventListener("click", () => {
+            localStorage.clear()
+            lista.innerHTML = ``
+            listaNumbers = []
+        })
+
+        if (localStorage.getItem("listaNumbers")) {
+            var listaNumbers = JSON.parse(localStorage.getItem("listaNumbers"))
+        } else {
+            var listaNumbers = [];
+        }
+        listaNumbers.forEach((l) => {
+            lista.innerHTML += `<li>Número: ${l.val} - Sorteado: ${l.cont}x</li>`
+        })
+    </script>
+</body>
+
+</html>
