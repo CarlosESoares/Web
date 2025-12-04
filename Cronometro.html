@@ -1,0 +1,144 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronometro</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container{
+            text-align: center;
+            background: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        #tempo{
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        button{
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #start{ background: #4caf50; color: white; }
+        #pause{ background: #ff9800; color: white; }
+        #reset{ background: #f44336; color: white; }
+
+        .pausas{
+            margin-top: 20px;
+            text-align: left;
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .pausas p{
+            margin: 5px 0;
+            background: #333;
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Cronometro</h2>
+        <div id="tempo">00:00:00</div>
+
+        <button id="start">Iniciar</button>
+        <button id="pause">Pausar</button>
+        <button id="reset">Resetar</button>
+
+        <div class="pausas">
+            <h4>Tempos de pausa:</h4>
+            <div id="listaPausas"></div>
+        </div>
+    </div>
+    <script>
+    let inicio = null;          // Momento em que o cronômetro começou
+    let tempoPausado = 0;       // Soma de todos os tempos anteriores
+    let intervalo = null;       // ID do setInterval
+
+    const visor = document.getElementById("tempo");
+    const listaPausas = document.getElementById("listaPausas");
+
+    // Formata segundos → HH:MM:SS
+    function formatarTempo(ms){
+        let totalSeg = Math.floor(ms / 1000);
+        let h = String(Math.floor(totalSeg / 3600)).padStart(2, "0");
+        let m = String(Math.floor((totalSeg % 3600) / 60)).padStart(2, "0");
+        let s = String(totalSeg % 60).padStart(2, "0");
+        return `${h}:${m}:${s}`;
+    }
+
+    function atualizarVisor(){
+        let agora = new Date();
+        let tempoAtual = agora - inicio + tempoPausado; // diferença do sistema
+        visor.textContent =  (tempoAtual);
+    }
+
+    // INICIAR
+    function iniciarCronometro(){
+        if(intervalo) return; // impede multiplos intervalos
+
+        inicio = new Date(); // marca a hora de inicio
+        intervalo = setInterval(atualizarVisor, 100); // atualiza 10x por segundo
+    }
+
+    // PAUSAR
+    function pausarCronometro(){
+        if(!intervalo) return;
+
+        clearInterval(intervalo);
+        intervalo = null;
+
+        let agora = new Date();
+        tempoPausado += agora - inicio;
+
+        // Registrar pausa
+        let item = document.createElement("p");
+        item.textContent = formatarTempo(tempoPausado);
+        listaPausas.appendChild(item);
+    }
+
+    // RESETAR
+    function resetarCronometro(){
+        clearInterval(intervalo);
+        intervalo = null;
+        inicio = null;
+        tempoPausado = 0;
+        visor.textContent = "00:00:00";
+        listaPausas.innerHTML = "";
+    }
+
+    // Botões
+    document.getElementById("start").addEventListener("click", iniciarCronometro);
+    document.getElementById("pause").addEventListener("click", pausarCronometro);
+    document.getElementById("reset").addEventListener("click", resetarCronometro);
+
+    // Atalhos de teclado
+    document.addEventListener("keydown", (e) => {
+        if(e.key === "s" || e.key === "S") iniciarCronometro();
+        if(e.key === "p" || e.key === "P") pausarCronometro();
+        if(e.key === "r" || e.key === "R") resetarCronometro();
+    });
+</script>
